@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import userRouter from './routes/userRoutes'
 dotenv.config()
 
 const app: Application = express()
@@ -11,6 +12,10 @@ const app: Application = express()
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
+
+
+//routes
+app.use('/api', userRouter)
 
 const PORT: number = 8000
 

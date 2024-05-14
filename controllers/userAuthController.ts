@@ -94,3 +94,27 @@ export const login = async (req: Request, res: Response) => {
         })
     }
 }
+
+export const profile = async (req: Request, res: Response) => {
+    const {id} = req.body.user
+
+    try {
+        const user = await User.findOne({_id: id})
+
+        if(!user) {
+            return res.status(404).json({
+                status: 404,
+                success: true,
+                message: "User not found"
+            })
+        }
+
+        return res.status(200).json({
+            status: 200,
+            success: true,
+            user
+        })
+    } catch (error) {
+        
+    }
+}
